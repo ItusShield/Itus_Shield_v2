@@ -1,0 +1,7 @@
+# Set the front LED to on to show boot finished
+# Orange
+gpio=9 
+echo $gpio > /sys/class/gpio/export
+echo out > /sys/class/gpio/gpio$gpio/direction
+echo 0 > /sys/class/gpio/gpio$gpio/value
+echo $gpio > /sys/class/gpio/unexport

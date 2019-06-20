@@ -1,0 +1,40 @@
+#!/bin/bash
+#
+# This script serves as the jumping point for initial setup on a first boot.
+# The script will setup aspects of the system from the "default" settings.
+echo "[DEBUG] Entered Firstboot Script"
+if [[ ${FIRSTBOOT} -eq 1 ]]
+then
+
+case ${SHIELD_MODE} in
+   "Router")
+   # Router
+   # Snort Rules
+   uci set snort.snort.interface='br-lan'
+   uci set snort.snort.config_file='/etc/snort/snort.conf'
+   ;;
+   "Bridge")
+   # Bridge
+   # Snort Rules
+   uci set snort.snort.interface='br-lan'
+   uci set snort.snort.config_file='/etc/snort/snort.conf'
+   ;;
+   "Gateway")
+   # Gateway
+   # Snort Rules
+   uci set snort.snort.interface='br-lan'
+   uci set snort.snort.config_file='/etc/snort/snort.conf'
+   ;;
+   *)
+   # Other?
+   echo "[FAILED] Unknown Device Mode!" > /dev/kmsg
+   ;;
+esac
+
+
+# Extract the Snort configuration and rule files, then remove the archive
+echo "PWD: ${PWD}"
+tar xvzf /etc/snort.tgz -C /etc
+#rm /etc/snort/tgz
+
+fi

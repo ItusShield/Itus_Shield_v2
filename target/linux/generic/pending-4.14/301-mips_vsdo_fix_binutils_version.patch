@@ -1,0 +1,40 @@
+Commit 2a037f310bab ("MIPS: VDSO: Fix build error") fixed the logic
+for testing binutils version, but introduced another issue.
+
+The ld-ifversion macro is defined as follows:
+
+  $(shell [ $(ld-version) $(1) $(2) ] && echo $(3) || echo $(4))
+
+This macro checks ld version to echo $(3) or echo $(4) based on
+the given condition.
+
+It is called as follows in arch/mips/vdso/Makefile:
+
+  ifeq ($(call ld-ifversion, -lt, 22500000, y),)
+    $(warning MIPS VDSO requires binutils >= 2.25)
+    obj-vdso-y := $(filter-out gettimeofday.o, $(obj-vdso-y))
+    ccflags-vdso += -DDISABLE_MIPS_VDSO
+  endif
+
+Since $(4) is empty, echo $(4) will evaluate to a simple 'echo'. So, in
+case binutils version is indeed greater than 2.25.0, ld-ifversion macro
+will return a newline, not the empty string as expected, and that makes
+the test fail.
+
+This patch fixes the test condition.
+
+Signed-off-by: Tony Wu <tung7970@gmail.com>
+Cc: Qais Yousef <qais.yousef@imgtec.com>
+Cc: Alex Smith <alex@alex-smith.me.uk>
+
+--- a/arch/mips/vdso/Makefile
++++ b/arch/mips/vdso/Makefile
+@@ -28,7 +28,7 @@ aflags-vdso := $(ccflags-vdso) \
+ # the comments on that file.
+ #
+ ifndef CONFIG_CPU_MIPSR6
+-  ifeq ($(call ld-ifversion, -lt, 225000000, y),y)
++  ifneq ($(call ld-ifversion,-ge,22500000,y),y)
+     $(warning MIPS VDSO requires binutils >= 2.25)
+     obj-vdso-y := $(filter-out gettimeofday.o, $(obj-vdso-y))
+     ccflags-vdso += -DDISABLE_MIPS_VDSO

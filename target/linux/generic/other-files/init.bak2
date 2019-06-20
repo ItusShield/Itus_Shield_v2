@@ -26,7 +26,7 @@ echo $GPIO > /sys/class/gpio/unexport
 
 if [ $GPIO16 -eq 0 ]; then
    # Gateway Mode
-   export SHIELD_MODE="Gateway"
+   SHIELD_MODE="Gateway"
    sys_ext=/sys/block/mmcblk1/mmcblk1p3
    dev_ext=/dev/mmcblk1p3
    dev_ext_major=179
@@ -34,14 +34,14 @@ if [ $GPIO16 -eq 0 ]; then
 else
    if [ $GPIO17 -eq 0 ]; then
       # Bridge Mode
-      export SHIELD_MODE="Bridge"
+      SHIELD_MODE="Bridge"
       sys_ext=/sys/block/mmcblk1/mmcblk1p4
       dev_ext=/dev/mmcblk1p4
       dev_ext_major=179
       dev_ext_minor=4
    else
       # Router Mode
-      export SHIELD_MODE="Router"
+      SHIELD_MODE="Router"
       sys_ext=/sys/block/mmcblk1/mmcblk1p2
       dev_ext=/dev/mmcblk1p2
       dev_ext_major=179
@@ -81,8 +81,6 @@ umount /proc
 umount /dev/pts
 umount /dev
 
-firstboot=0
-export FIRSTBOOT=${firstboot}
 count=0
 while true
 do
@@ -92,31 +90,29 @@ do
 	if [ -e ${extroot_dir}/.norwits ]
 	then
            echo "Found ${extroot_dir}/init"
-	   echo "Firstboot flag: ${firstboot}"
-	   export FIRSTBOOT=${firstboot}
 	   exec switch_root ${extroot_dir} /sbin/init
 	else
+
 	   # Not our init!  Removing the old stuff
-	   firstboot=1
-           echo "${extroot_dir}/init is not ours!  Setting up block device for initial boot."
+           echo "${extroot_dir}/init not found!  Setting up block device for initial boot."
+#	   rm -rf ${extroot_dir}/*
            # Settings up the extroot block
-           cp -a -f bin etc init lib lib64 mnt overlay rom root sbin tmp usr var www ${extroot_dir}
-	   #cp -a -f /. ${extroot_dir}
+           cp -a bin dev etc init lib lib64 mnt overlay rom root sbin tmp usr var www ${extroot_dir}
            sleep 10
-           #mkdir -p ${extroot_dir}/proc ${extroot_dir}/sys
+           mkdir -p ${extroot_dir}/proc ${extroot_dir}/sys
            echo "# Empty File to validate correct block setup - DO NOT REMOVE" > ${extroot_dir}/.norwits
+           # Setting up first-boot configs
+           exec /etc/config/firstboot-sh
         fi
-    else
+#    else
         # No init found - Setting up the extroot block
-        echo "${extroot_dir}/init not found!  Setting up block device for initial boot."
-	firstboot=1
-        cp -a -f bin etc init lib lib64 mnt overlay rom root sbin tmp usr var www ${extroot_dir}
-	#cp -a -f /. ${extroot_dir}
-	sleep 10
-        #mkdir -p ${extroot_dir}/proc ${extroot_dir}/sys
-        echo "# Empty File to validate correct block setup - DO NOT REMOVE" > ${extroot_dir}/.norwits
+#        echo "${extroot_dir}/init not found!  Setting up block device for initial boot."
+#        cp -a bin dev etc init lib lib64 mnt overlay rom root sbin tmp usr var www ${extroot_dir}
+#	sleep 10
+#        mkdir -p ${extroot_dir}/proc ${extroot_dir}/sys
+#        echo "# Empty File to validate correct block setup - DO NOT REMOVE" > ${extroot_dir}/.norwits
 	# Setting up first-boot configs
-        export FIRSTBOOT=${firstboot}
+#	exec /etc/config/firstboot-sh
     fi
 
     sleep 1; echo "Checking for ${extroot_dir}/init : ${count}"; count=$((count+1))

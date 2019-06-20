@@ -1,0 +1,19 @@
+#!/bin/bash
+REMOTE_IP="10.10.10.10"
+REMOTE_USER="root"
+REMOTE_MOUNT="/overlay"
+REMOTE_MMC="/dev/mmcblk1p1"
+IMGNAME="ItusgatewayImage"
+LOCAL_IMAGE="bin/targets/octeon/generic/openwrt-octeon-itus-initramfs-kernel.bin"
+
+# make sure the directory is mounted and make a backup of the working image
+echo "Mounting storage and making a backup of the current image to ${IMGNAME}-working"
+ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $REMOTE_USER@$REMOTE_IP "umount ${REMOTE_MOUNT}; mount ${REMOTE_MMC} ${REMOTE_MOUNT} && cp ${REMOTE_MOUNT}/${IMGNAME} ${REMOTE_MOUNT}/${IMGNAME}-working" || exit 1
+
+# copy the new image over
+echo "Transferring Image"
+scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $LOCAL_IMAGE $REMOTE_USER@$REMOTE_IP:$REMOTE_MOUNT/$IMGNAME || exit 1
+
+echo "Cleaning Up"
+# unmount the remote overlay
+ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $REMOTE_USER@$REMOTE_IP "umount ${REMOTE_MOUNT}" || exit 1

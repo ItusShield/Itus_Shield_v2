@@ -1,0 +1,3 @@
+#!/bin/bash
+# Move the exploded kernel temp directory patches to the main source tree
+make target/linux/update package/index V=s

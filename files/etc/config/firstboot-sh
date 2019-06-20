@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+# This script serves as the jumping point for initial setup on a first boot.
+# The script will setup aspects of the system from the "default" settings.
+
+# Snort
+# By default, Snort uses the 'lo' interface.  We want it watching the actual traffic.
+/sbin/uci set snort.snort.interface='br-lan'
+/sbin/uci set snort.snort.config_file='/etc/snort/snort.conf'
+
+# Extract the Snort configuration and rule files, then remove the archive
+echo "PWD: ${PWD}"
+tar xvzf /etc/snort.tgz -C /extroot/etc
+#rm /etc/snort/tgz
+

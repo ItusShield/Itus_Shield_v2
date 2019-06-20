@@ -1,0 +1,4 @@
+#!/bin/bash
+# Open the OpenWrt kernel for editing/patching
+make target/linux/{clean,prepare} V=s QUILT=1
+

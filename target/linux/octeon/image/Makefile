@@ -42,4 +42,10 @@ define Device/erlite
 endef
 TARGET_DEVICES += erlite
 
+define Device/itus
+  DEVICE_TITLE := Itus Networks Shield
+  CPU_TYPE := OCTEON_CN70XX
+endef
+TARGET_DEVICES += itus
+
 $(eval $(call BuildImage))
