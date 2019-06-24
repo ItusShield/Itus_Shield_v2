@@ -10,7 +10,8 @@ ARCH:=mips64
 BOARD:=octeon
 BOARDNAME:=Cavium Networks Octeon
 FEATURES:=squashfs ramdisk pci usb
-CPU_TYPE:=octeonplus
+#CPU_TYPE:=octeonplus
+CPU_TYPE:=OCTEON_CN70XX_PASS1_2
 MAINTAINER:=John Crispin <john@phrozen.org>
 
 KERNEL_PATCHVER:=4.19
