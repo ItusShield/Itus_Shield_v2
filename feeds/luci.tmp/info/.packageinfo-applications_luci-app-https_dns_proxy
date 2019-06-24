@@ -1,0 +1,83 @@
+Source-Makefile: feeds/luci/applications/luci-app-https_dns_proxy/Makefile
+Build-Depends: lua/host luci-base/host LUCI_CSSTIDY:csstidy/host 
+
+Package: luci-app-https_dns_proxy
+Submenu: 3. Applications
+Version: x-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +luci-mod-admin-full +https_dns_proxy
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: HTTPS DNS Proxy Web UI
+Maintainer: Stan Grishin <stangri@melmac.net>
+Source: 
+License: GPL-3.0+
+Type: ipkg
+Description:    Provides Web UI for HTTPS DNS Proxy
+Stan Grishin <stangri@melmac.net>
+@@
+
+Package: luci-i18n-https_dns_proxy-es
+Default: LUCI_LANG_es||(ALL&&m)
+Version: x-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-https_dns_proxy
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-https_dns_proxy - es translation
+Maintainer: Stan Grishin <stangri@melmac.net>
+Source: 
+License: GPL-3.0+
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-https_dns_proxy - Español (Spanish)
+Stan Grishin <stangri@melmac.net>
+@@
+
+Package: luci-i18n-https_dns_proxy-zh-cn
+Default: LUCI_LANG_zh-cn||(ALL&&m)
+Version: x-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-https_dns_proxy
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-https_dns_proxy - zh-cn translation
+Maintainer: Stan Grishin <stangri@melmac.net>
+Source: 
+License: GPL-3.0+
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-https_dns_proxy - 中文 (Chinese)
+Stan Grishin <stangri@melmac.net>
+@@
+
+Package: luci-i18n-https_dns_proxy-zh-tw
+Default: LUCI_LANG_zh-tw||(ALL&&m)
+Version: x-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-https_dns_proxy
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-https_dns_proxy - zh-tw translation
+Maintainer: Stan Grishin <stangri@melmac.net>
+Source: 
+License: GPL-3.0+
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-https_dns_proxy - 臺灣華語 (Taiwanese)
+Stan Grishin <stangri@melmac.net>
+@@
+
+

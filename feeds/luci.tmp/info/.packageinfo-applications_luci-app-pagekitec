@@ -1,0 +1,98 @@
+Source-Makefile: feeds/luci/applications/luci-app-pagekitec/Makefile
+Build-Depends: lua/host luci-base/host LUCI_CSSTIDY:csstidy/host 
+
+Package: luci-app-pagekitec
+Submenu: 3. Applications
+Version: x-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +pagekitec
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: LuCI Support for PageKite
+Maintainer: Karl Palsson <karlp@tweak.net.au>
+Source: 
+Type: ipkg
+Description: LuCI Support for PageKite
+Karl Palsson <karlp@tweak.net.au>
+@@
+
+Package: luci-i18n-pagekitec-es
+Default: LUCI_LANG_es||(ALL&&m)
+Version: x-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-pagekitec
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-pagekitec - es translation
+Maintainer: Karl Palsson <karlp@tweak.net.au>
+Source: 
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-pagekitec - Español (Spanish)
+Karl Palsson <karlp@tweak.net.au>
+@@
+
+Package: luci-i18n-pagekitec-ja
+Default: LUCI_LANG_ja||(ALL&&m)
+Version: x-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-pagekitec
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-pagekitec - ja translation
+Maintainer: Karl Palsson <karlp@tweak.net.au>
+Source: 
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-pagekitec - 日本語 (Japanese)
+Karl Palsson <karlp@tweak.net.au>
+@@
+
+Package: luci-i18n-pagekitec-zh-cn
+Default: LUCI_LANG_zh-cn||(ALL&&m)
+Version: x-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-pagekitec
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-pagekitec - zh-cn translation
+Maintainer: Karl Palsson <karlp@tweak.net.au>
+Source: 
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-pagekitec - 中文 (Chinese)
+Karl Palsson <karlp@tweak.net.au>
+@@
+
+Package: luci-i18n-pagekitec-zh-tw
+Default: LUCI_LANG_zh-tw||(ALL&&m)
+Version: x-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-pagekitec
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-pagekitec - zh-tw translation
+Maintainer: Karl Palsson <karlp@tweak.net.au>
+Source: 
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-pagekitec - 臺灣華語 (Taiwanese)
+Karl Palsson <karlp@tweak.net.au>
+@@
+
+

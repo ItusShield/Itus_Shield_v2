@@ -1,0 +1,12 @@
+[submodule "feeds/luci"]
+	path = feeds/luci
+	url = https://git.openwrt.org/project/luci.git
+[submodule "feeds/routing"]
+	path = feeds/routing
+	url = https://git.openwrt.org/feed/routing.git
+[submodule "feeds/packages"]
+	path = feeds/packages
+	url = https://git.openwrt.org/feed/packages.git
+[submodule "feeds/telephony"]
+	path = feeds/telephony
+	url = https://git.openwrt.org/feed/telephony.git

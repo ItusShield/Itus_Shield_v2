@@ -1,0 +1,60 @@
+Source-Makefile: feeds/luci/applications/luci-app-rp-pppoe-server/Makefile
+Build-Depends: lua/host luci-base/host LUCI_CSSTIDY:csstidy/host 
+
+Package: luci-app-rp-pppoe-server
+Submenu: 3. Applications
+Version: x-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +rp-pppoe-server
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: Roaring Penguin PPPoE Server
+Maintainer: 
+Source: 
+Type: ipkg
+Description: Roaring Penguin PPPoE Server
+
+@@
+
+Package: luci-i18n-rp-pppoe-server-en
+Default: LUCI_LANG_en||(ALL&&m)
+Version: x-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-rp-pppoe-server
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-rp-pppoe-server - en translation
+Maintainer: 
+Source: 
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-rp-pppoe-server - English
+
+@@
+
+Package: luci-i18n-rp-pppoe-server-es
+Default: LUCI_LANG_es||(ALL&&m)
+Version: x-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-rp-pppoe-server
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-rp-pppoe-server - es translation
+Maintainer: 
+Source: 
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-rp-pppoe-server - Español (Spanish)
+
+@@
+
+

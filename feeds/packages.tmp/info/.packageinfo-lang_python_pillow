@@ -1,0 +1,24 @@
+Source-Makefile: feeds/packages/lang/python/pillow/Makefile
+
+Package: pillow
+Submenu: Python
+Version: 5.3.0-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python +libfreetype +libjpeg +zlib +libtiff
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: The friendly PIL fork
+Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
+Source: Pillow-5.3.0.tar.gz
+License: CUSTOM
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     The friendly PIL fork
+https://python-pillow.org/
+Alexandru Ardelean <ardeleanalex@gmail.com>
+@@
+
+

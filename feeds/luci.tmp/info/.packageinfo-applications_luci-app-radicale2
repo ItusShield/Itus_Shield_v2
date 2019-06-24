@@ -1,0 +1,43 @@
+Source-Makefile: feeds/luci/applications/luci-app-radicale2/Makefile
+Build-Depends: lua/host luci-base/host LUCI_CSSTIDY:csstidy/host 
+
+Package: luci-app-radicale2
+Submenu: 3. Applications
+Version: x-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +radicale2 +rpcd-mod-rad2-enc
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: Radicale v2.x CalDAV/CardDAV Server
+Maintainer: Daniel Dickinson <cshored@thecshore.com>
+Source: 
+License: Apache-2.0
+Type: ipkg
+Description: Radicale v2.x CalDAV/CardDAV Server
+Daniel Dickinson <cshored@thecshore.com>
+@@
+
+Package: luci-i18n-radicale2-en
+Default: LUCI_LANG_en||(ALL&&m)
+Version: x-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-radicale2
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-radicale2 - en translation
+Maintainer: Daniel Dickinson <cshored@thecshore.com>
+Source: 
+License: Apache-2.0
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-radicale2 - English
+Daniel Dickinson <cshored@thecshore.com>
+@@
+
+

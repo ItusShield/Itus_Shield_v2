@@ -1,0 +1,23 @@
+Source-Makefile: feeds/packages/libs/libwangle/Makefile
+
+Package: libwangle
+Version: 2019.06.10.00-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libfizz
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: libs
+Category: Libraries
+Repository: base
+Title: Wangle: C++ networking library
+Maintainer: Amol Bhave <ambhave@fb.com>
+Source: libwangle-2019.06.10.00.tar.gz
+License: Apache-2.0
+LicenseFiles: LICENSE
+Type: ipkg
+Description: 	Wangle is a framework providing a set of common client/server abstractions for building services in a consistent, modular, and composable way.
+	This package includes the shared library.
+Amol Bhave <ambhave@fb.com>
+@@
+
+

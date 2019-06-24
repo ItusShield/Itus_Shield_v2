@@ -1,0 +1,50 @@
+Source-Makefile: feeds/packages/lang/python/django-simple-captcha/Makefile
+
+Package: django-simple-captcha
+Submenu: Python
+Version: 0.5.11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python +python-six +python-django +pillow +django-ranged-response
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: python
+Section: lang
+Category: Languages
+Repository: base
+Title: Simple Django captcha application
+Maintainer: Eneas U de Queiroz <cote2004-github@yahoo.com>
+Source: django-simple-captcha-0.5.11.zip
+License: MIT
+LicenseFiles: LICENSE
+Type: ipkg
+Description:   Django Simple Captcha is an extremely simple, yet highly customizable Django
+  application to add captcha images to any Django form.
+https://github.com/mbi/django-simple-captcha
+Eneas U de Queiroz <cote2004-github@yahoo.com>
+@@
+
+Package: django-simple-captcha-src
+Submenu: Python
+Version: 0.5.11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: python
+Section: lang
+Category: Languages
+Repository: base
+Title: Simple Django captcha application (sources)
+Maintainer: Eneas U de Queiroz <cote2004-github@yahoo.com>
+Source: django-simple-captcha-0.5.11.zip
+License: MIT
+LicenseFiles: LICENSE
+Type: ipkg
+Description:       Django Simple Captcha is an extremely simple, yet highly customizable Django
+  application to add captcha images to any Django form..
+    (Contains the Python sources for this package).
+https://github.com/mbi/django-simple-captcha
+Eneas U de Queiroz <cote2004-github@yahoo.com>
+@@
+
+

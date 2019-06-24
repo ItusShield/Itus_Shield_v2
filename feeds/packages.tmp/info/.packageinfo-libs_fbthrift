@@ -1,0 +1,25 @@
+Source-Makefile: feeds/packages/libs/fbthrift/Makefile
+Build-Depends: fbthrift/host
+Build-Depends/host: libmstch/host
+Build-Types: host
+
+Package: fbthrift
+Version: 2019.06.10.00-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libwangle +libfmt +librsocket-cpp
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: libs
+Category: Libraries
+Repository: base
+Title: Facebook's branch of Apache Thrift, including a new C++ server.
+Maintainer: Amol Bhave <ambhave@fb.com>
+Source: fbthrift-2019.06.10.00.tar.gz
+License: Apache-2.0
+LicenseFiles: LICENSE
+Type: ipkg
+Description: 	Facebook's branch of Apache Thrift, including a new C++ server.
+Amol Bhave <ambhave@fb.com>
+@@
+
+

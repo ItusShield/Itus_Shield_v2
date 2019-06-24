@@ -1,0 +1,22 @@
+Source-Makefile: feeds/packages/libs/fbzmq/Makefile
+
+Package: fbzmq
+Version: 2019.06.10.00-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +fbthrift +libzmq +libsigar
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: libs
+Category: Libraries
+Repository: base
+Title: Facebook ZeroMQ wrappers.
+Maintainer: Amol Bhave <ambhave@fb.com>
+Source: fbzmq-2019.06.10.00.tar.gz
+License: MIT
+LicenseFiles: LICENSE
+Type: ipkg
+Description: 	Facebook ZeroMQ wrappers.
+Amol Bhave <ambhave@fb.com>
+@@
+
+

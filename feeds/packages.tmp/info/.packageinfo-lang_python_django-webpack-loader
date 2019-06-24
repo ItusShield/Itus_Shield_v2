@@ -1,0 +1,48 @@
+Source-Makefile: feeds/packages/lang/python/django-webpack-loader/Makefile
+
+Package: django-webpack-loader
+Submenu: Python
+Version: 0.6.0-4
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python +python-django
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: python
+Section: lang
+Category: Languages
+Repository: base
+Title: Transparently use webpack in django
+Maintainer: Eneas U de Queiroz <cote2004-github@yahoo.com>
+Source: django-webpack-loader-0.6.0.tar.gz
+License: MIT
+LicenseFiles: LICENSE
+Type: ipkg
+Description:   Use webpack to generate your static bundles without django’s staticfiles or opaque wrappers.
+https://github.com/owais/django-webpack-loader
+Eneas U de Queiroz <cote2004-github@yahoo.com>
+@@
+
+Package: django-webpack-loader-src
+Submenu: Python
+Version: 0.6.0-4
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: python
+Section: lang
+Category: Languages
+Repository: base
+Title: Transparently use webpack in django (sources)
+Maintainer: Eneas U de Queiroz <cote2004-github@yahoo.com>
+Source: django-webpack-loader-0.6.0.tar.gz
+License: MIT
+LicenseFiles: LICENSE
+Type: ipkg
+Description:       Use webpack to generate your static bundles without django’s staticfiles or opaque wrappers..
+    (Contains the Python sources for this package).
+https://github.com/owais/django-webpack-loader
+Eneas U de Queiroz <cote2004-github@yahoo.com>
+@@
+
+
