@@ -6,7 +6,7 @@
 	url = https://git.openwrt.org/feed/routing.git
 [submodule "feeds/packages"]
 	path = feeds/packages
-	url = https://git.openwrt.org/feed/packages.git
+	url = git@github.com:Grommish/OpenWrt_Feeds_Packages.git
 [submodule "feeds/telephony"]
 	path = feeds/telephony
 	url = https://git.openwrt.org/feed/telephony.git
