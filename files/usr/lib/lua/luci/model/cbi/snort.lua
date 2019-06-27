@@ -41,8 +41,10 @@ m = Map("snort", translate("Intrusion Prevention"), translate("Changes may take 
 
 m.on_init = function()
 
-    -- Read the SHIELD_MODE envsetup
-   if os.getenv("SHIELD_MODE") == "Router" then
+    -- Get the Shield Mode
+   io.input("/var/.mode")
+   line = io.read("*line")
+   if line == "Router" then
       luci.sys.call("sed '1!G;h$!d' /var/log/snort/alert.log > /tmp/snort/alert2.log")
    end
    luci.sys.call("grep -i 'priority: 1' /var/log/snort/alert2.log > /var/log/snort/priority1.log")
@@ -56,8 +58,10 @@ s.anonymous = true
 s.addremove = false
 
 s:tab("tab_basic", translate("Basic Settings"))
--- Read the SHIELD_MODE envsetup
-if os.getenv("SHIELD_MODE") == "Router" then
+-- Get the Shield Mode
+io.input("/var/.mode")
+line = io.read("*line")
+if line == "Router" then
    s:tab("tab_wan", translate("WAN Config"))
    s:tab("tab_lan", translate("LAN Config"))
 else
@@ -112,7 +116,9 @@ button_start = s:taboption("tab_basic",Button, "start", translate("Status: "))
    end
   end
 
-  if os.getenv("SHIELD_MODE") == "Router" then
+  io.input("/var/.mode")
+  line = io.read("*line")
+  if line == "Router" then
    --------------------- Snort Instance WAN Tab -----------------------
 
    config_file1 = s:taboption("tab_wan", TextValue, "text1", "")
