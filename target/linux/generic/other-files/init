@@ -94,26 +94,20 @@ do
            echo "Found ${extroot_dir}/init"
 	   echo "Firstboot flag: ${firstboot}"
 	   export FIRSTBOOT=${firstboot}
+	   echo ${SHIELD_MODE} > ${extroot_dir}/.mode
 	   exec switch_root ${extroot_dir} /sbin/init
 	else
-	   # Not our init!  Removing the old stuff
-	   firstboot=1
-           echo "${extroot_dir}/init is not ours!  Setting up block device for initial boot."
-           # Settings up the extroot block
-           cp -a -f bin etc init lib lib64 mnt overlay rom root sbin tmp usr var www ${extroot_dir}
-	   #cp -a -f /. ${extroot_dir}
-           sleep 10
-           #mkdir -p ${extroot_dir}/proc ${extroot_dir}/sys
-           echo "# Empty File to validate correct block setup - DO NOT REMOVE" > ${extroot_dir}/.norwits
+	# Not our external rootfs!  Time to go bubye.
+	# Remove everything, then wait for the next loop to populate with our stuff.
+	   rm -rf ${extroot_dir}/*
         fi
     else
         # No init found - Setting up the extroot block
         echo "${extroot_dir}/init not found!  Setting up block device for initial boot."
+	#Set up the call for firstboot.
 	firstboot=1
-        cp -a -f bin etc init lib lib64 mnt overlay rom root sbin tmp usr var www ${extroot_dir}
-	#cp -a -f /. ${extroot_dir}
-	sleep 10
-        #mkdir -p ${extroot_dir}/proc ${extroot_dir}/sys
+        cp -a -f bin dev etc init lib lib64 mnt overlay proc rom root sbin sys tmp usr var www ${extroot_dir}
+	sleep 5
         echo "# Empty File to validate correct block setup - DO NOT REMOVE" > ${extroot_dir}/.norwits
 	# Setting up first-boot configs
         export FIRSTBOOT=${firstboot}
