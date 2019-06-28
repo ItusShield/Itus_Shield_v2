@@ -1,3 +1,7 @@
 config snort 'snort'
         option config_file '/etc/snort/snort.conf'
         option interface 'br-lan:eth0'
+	option interface_wan 'eth0'
+	option interface_lan 'br-lan'
+	option config_file_lan '/etc/snort/snort.conf'
+	option config_file_wan '/etc/snort/snort.conf'

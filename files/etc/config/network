@@ -20,3 +20,7 @@ config interface 'lan'
 config globals 'globals'
         option ula_prefix 'fdb0:5aa4:9f0b::/48'
 
+config interface 'wan6'
+    option ifname 'eth0'
+    option proto 'dhcpv6'
+

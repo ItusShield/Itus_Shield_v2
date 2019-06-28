@@ -10,7 +10,11 @@ PROG=/usr/bin/snort
 validate_snort_section() {
 	uci_load_validate snort snort "$1" "$2" \
 		'config_file:string' \
-		'interface:string'
+		'config_file_lan:string' \
+		'config_file_wan:string' \
+		'interface:string' \
+		'interface_wan:string' \
+		'interface_lan:string'
 }
 
 start_snort_instance() {
@@ -20,7 +24,13 @@ start_snort_instance() {
 	}
 
 	procd_open_instance
-	procd_set_param command $PROG "-Q" "-q" "-i" "$interface" "-c" "$config_file"
+	if [ "${SHIELD_MODE}" = "Router" ]
+	then
+	   procd_set_param command $PROG "-Q" "-q" "-i" "$interface_wan" "-c" "$config_file_wan"
+           procd_set_param command $PROG "-Q" "-q" "-i" "$interface_lan" "-c" "$config_file_lan"
+	else
+           procd_set_param command $PROG "-Q" "-q" "-i" "$interface" "-c" "$config_file"
+	fi
 	procd_set_param file $config_file
 	procd_set_param respawn
 	procd_close_instance
