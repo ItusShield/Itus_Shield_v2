@@ -5,16 +5,33 @@ VAR_LOG=/var/log/snort
 SNORT_LOG=/etc/snort/logs
 
 # Number of Logs to keep on disk
-NUM_LOGS=5
+# Number of Logs = Actual Number + 2 (.. and . in listing)
+# Each log is 1MB in size
+NUM_LOGS=7
 
-# Move roll-over logs from the Logging Directory
-if [ -f ${VAR_LOG}/alert.fast.* ]; then
-	mv ${VAR_LOG}/alert.fast.* $SNORT_LOG
-fi
+# Set the Date and time (mm/dd/yyyy hh:mm:ss)
+dt=$(date '+%m/%d/%Y %H:%M:%S');
+
+echo "Snort Rotate Log script started! ${dt}" > /dev/kmsg
 
 # Remove the extranious binary logs
 rm -rf ${VAR_LOG}/snort.log.*
 
 # Keep only the number of log files
-cd ${SNORT_LOG}
-ls -1t ${SNORT_LOG} | tail -n +${NUM_LOGS} | xargs rm -f
+cd ${VAR_LOG}
+ls -1t ${VAR_LOG}/alert.fast.* | tail -n +${NUM_LOGS} | xargs rm -f
+
+# Move the remaining logs to disk
+#for f in ${VAR_LOG}/alert.fast.*; do
+#    [ -e "$f" ] && mv ${VAR_LOG}/alert.fast.* $SNORT_LOG
+#    break
+#done
+
+# Pull out any Priority 1 Alerts/Drops
+# Check to see if the log file exists - append if it does, create if not
+# Save to Disk to preserve over reboots/crashes
+if [ -f ${SNORT_LOGS}/priority1.log ]; then
+        grep -ir 'priority: 1' ${VAR_LOG} >> ${SNORT_LOG}/priority1.log
+else
+        grep -ir 'priority: 1' ${VAR_LOG} > ${SNORT_LOG}/priority1.log
+fi
