@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Log Directories for Snort
+VAR_LOG=/var/log/snort
+SNORT_LOG=/etc/snort/logs
+
+# Number of Logs to keep on disk
+NUM_LOGS=5
+
+# Move roll-over logs from the Logging Directory
+if [ -f ${VAR_LOG}/alert.fast.* ]; then
+	mv ${VAR_LOG}/alert.fast.* $SNORT_LOG
+fi
+
+# Remove the extranious binary logs
+rm -rf ${VAR_LOG}/snort.log.*
+
+# Keep only the number of log files
+cd ${SNORT_LOG}
+ls -1t ${SNORT_LOG} | tail -n +${NUM_LOGS} | xargs rm -f
