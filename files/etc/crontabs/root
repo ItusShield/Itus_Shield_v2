@@ -1,0 +1,1 @@
+*/30 * * * * sh /etc/snort/rotatelogs >/dev/null 2>&1
